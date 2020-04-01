@@ -12,7 +12,7 @@ Custom UITextField with floated placeholder and an underline.
 LineTextField is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'LineTextField'
+pod 'LineTextField', '~> 1.0'
 ```
 
 ## Usage
