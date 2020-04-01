@@ -15,7 +15,7 @@ LineTextField is available through [CocoaPods](https://cocoapods.org). To instal
 pod 'LineTextField'
 ```
 
-## Usafe
+## Usage
 
 ```swift
 import LineTextField
