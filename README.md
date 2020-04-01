@@ -1,6 +1,10 @@
 # LineTextField
 Custom UITextField with floated placeholder and an underline.
 
+[![Version](https://img.shields.io/cocoapods/v/LineTextField)](https://cocoapods.org/pods/LineTextField)
+[![License](https://img.shields.io/cocoapods/l/LineTextField)](https://raw.githubusercontent.com/NovichenkoAnton/LineTextField/master/LICENSE)
+[![Platform](https://img.shields.io/cocoapods/p/LineTextField)](https://cocoapods.org/pods/LineTextField)
+
 ## Requirenments
 
 - iOS 9.0+
