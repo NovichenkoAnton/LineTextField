@@ -9,7 +9,7 @@
 import UIKit
 import LineTextField
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
 	private var lineTextField: LineTextField!
 
@@ -19,8 +19,8 @@ class ViewController: UIViewController {
 //		lineTextField = LineTextField(frame: CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 35))
 //		lineTextField.placeholder = "Manual placeholder"
 //		lineTextField.floatingPlaceholder = true
-//		lineTextField.floatingLabelColor = .blue
-//		lineTextField.floatingLabelActiveColor = .black
+//		lineTextField.floatingPlaceholderColor = .blue
+//		lineTextField.floatingPlaceholderActiveColor = .black
 //		view.addSubview(lineTextField)
 	}
 

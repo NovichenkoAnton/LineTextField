@@ -43,12 +43,12 @@ public class LineTextField: UITextField {
 		}
 	}
 
-	/// Color for inactive state of floating label.
+	/// Color for inactive state of floating placeholder.
 	/// Default value is `UIColor.black`.
-	@IBInspectable public var floatingLabelColor: UIColor = UIColor.black {
+	@IBInspectable public var floatingPlaceholderColor: UIColor = UIColor.black {
 		didSet {
 			if floatingPlaceholder {
-				floatedLabel.textColor = floatingLabelColor
+				floatedLabel.textColor = floatingPlaceholderColor
 				setNeedsDisplay()
 			}
 		}
@@ -56,7 +56,7 @@ public class LineTextField: UITextField {
 
 	/// Color for active state of floating label.
 	/// Default value is `UIColor.black`.
-	@IBInspectable public var floatingLabelActiveColor: UIColor = UIColor.black
+	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
 
 	// MARK: - Inits
 	public override init(frame: CGRect) {
@@ -103,7 +103,7 @@ public class LineTextField: UITextField {
 		addSubview(floatedLabel)
 		bringSubviewToFront(floatedLabel)
 
-		updateFloatedLabelColor(editing: false)
+		updateFloatedLabelColor(editing: false, animated: false)
 		updateFloatedLabel()
 	}
 
@@ -192,7 +192,7 @@ private extension LineTextField {
 		}
 
 		if animated {
-			UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: animationBlock, completion: nil)
+			UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: animationBlock, completion: nil)
 		} else {
 			animationBlock()
 		}
@@ -200,11 +200,19 @@ private extension LineTextField {
 
 	/// Update text color of floated label
 	/// - Parameter editing: `true` if `UITextField` is editing now
-	func updateFloatedLabelColor(editing: Bool) {
-		if editing && hasText {
-			floatedLabel.textColor = floatingLabelActiveColor
+	func updateFloatedLabelColor(editing: Bool, animated: Bool = true) {
+		let animationBlock = { () -> Void in
+			if editing && self.hasText {
+				self.floatedLabel.textColor = self.floatingPlaceholderActiveColor
+			} else {
+				self.floatedLabel.textColor = self.floatingPlaceholderColor
+			}
+		}
+
+		if animated {
+			UIView.transition(with: floatedLabel, duration: 0.2, options: .transitionCrossDissolve, animations: animationBlock, completion: nil)
 		} else {
-			floatedLabel.textColor = floatingLabelColor
+			animationBlock()
 		}
 	}
 }
