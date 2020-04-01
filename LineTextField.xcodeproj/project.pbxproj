@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1A9B9AE1243201F600CC50B0 /* LineTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9B9ADF243201F600CC50B0 /* LineTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1A9B9AE2243201F600CC50B0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B9AE0243201F600CC50B0 /* README.md */; };
 		1A9B9AE42432027700CC50B0 /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B9AE32432027700CC50B0 /* LineTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A9B9AD32431FD6E00CC50B0 /* LineTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LineTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B9ADF243201F600CC50B0 /* LineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineTextField.h; sourceTree = "<group>"; };
-		1A9B9AE0243201F600CC50B0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A9B9AE32432027700CC50B0 /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
 		1A9B9B0E2433026C00CC50B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,7 +51,6 @@
 				1A9B9B102433027D00CC50B0 /* LineTextField */,
 				1A9B9B0E2433026C00CC50B0 /* Info.plist */,
 				1A9B9ADF243201F600CC50B0 /* LineTextField.h */,
-				1A9B9AE0243201F600CC50B0 /* README.md */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -136,7 +133,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9B9AE2243201F600CC50B0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +282,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +311,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

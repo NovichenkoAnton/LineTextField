@@ -16,12 +16,12 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		lineTextField = LineTextField(frame: CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 35))
-		lineTextField.placeholder = "Manual placeholder"
-		lineTextField.floatingPlaceholder = true
-		lineTextField.floatingLabelColor = .blue
-		lineTextField.floatingLabelActiveColor = .black
-		view.addSubview(lineTextField)
+//		lineTextField = LineTextField(frame: CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 35))
+//		lineTextField.placeholder = "Manual placeholder"
+//		lineTextField.floatingPlaceholder = true
+//		lineTextField.floatingLabelColor = .blue
+//		lineTextField.floatingLabelActiveColor = .black
+//		view.addSubview(lineTextField)
 	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
