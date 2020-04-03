@@ -111,6 +111,8 @@ public class LineTextField: UITextField {
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 
+		underlineLayer.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: 1)
+
 		if floatingPlaceholder {
 			floatedLabel.frame = floatedLabelRect()
 		}

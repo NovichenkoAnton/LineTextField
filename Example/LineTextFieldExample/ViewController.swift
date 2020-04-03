@@ -11,6 +11,11 @@ import LineTextField
 
 final class ViewController: UIViewController {
 
+	// MARK: - Outlets
+
+	@IBOutlet var textField: LineTextField!
+	@IBOutlet var textFieldHeight: NSLayoutConstraint!
+
 	private var lineTextField: LineTextField!
 
 	override func viewDidLoad() {
@@ -24,11 +29,33 @@ final class ViewController: UIViewController {
 //		view.addSubview(lineTextField)
 	}
 
+	// MARK: - Events
+
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true)
 	}
+
+	@IBAction func showTextField(_ sender: UISwitch) {
+		updateVisibility(show: sender.isOn)
+	}
 }
 
+private extension ViewController {
+	func updateVisibility(show: Bool) {
+		let alpha: CGFloat = show ? 1.0 : 0.0
+		textFieldHeight.constant = show ? 35 : 0
+
+		let animationBlock = { () -> Void in
+			self.textField.alpha = alpha
+
+			self.view.layoutIfNeeded()
+		}
+
+		UIView.animate(withDuration: 0.25, animations: animationBlock)
+	}
+}
+
+// MARK: - UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		print("begin editing")
