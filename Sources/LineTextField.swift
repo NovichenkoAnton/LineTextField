@@ -81,7 +81,6 @@ public class LineTextField: UITextField {
 		}
 
 		addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
-		addTarget(self, action: #selector(editingChanged), for: .editingChanged)
 		addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
 	}
 
@@ -102,44 +101,29 @@ public class LineTextField: UITextField {
 
 		addSubview(floatedLabel)
 		bringSubviewToFront(floatedLabel)
-
-		updateFloatedLabelColor(editing: false, animated: false)
-		updateFloatedLabel()
 	}
 
 	// MARK: - Overriden functions
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 
-		underlineLayer.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: 1)
+		underlineLayer.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: underlineLayer.frame.height)
 
 		if floatingPlaceholder {
 			floatedLabel.frame = floatedLabelRect()
+
+			updateFloatedLabelColor(editing: (hasText && isFirstResponder))
+			updateFloatedLabel(animated: hasText)
 		}
 	}
 
 	// MARK: - Events
 	@objc func editingDidBegin() {
 		activateBottomLine()
-
-		if floatingPlaceholder {
-			updateFloatedLabelColor(editing: true)
-		}
-	}
-
-	@objc func editingChanged() {
-		if floatingPlaceholder {
-			updateFloatedLabelColor(editing: true)
-			updateFloatedLabel(animated: true)
-		}
 	}
 
 	@objc func editingDidEnd() {
-		disableBottomLine()
-
-		if floatingPlaceholder {
-			updateFloatedLabelColor(editing: false)
-		}
+		diactivateBottomLine()
 	}
 }
 
@@ -148,17 +132,17 @@ private extension LineTextField {
 	/// Get font `UIFont` font for floated label
 	/// - Returns: Correct `UIFont`
 	func labelFont() -> UIFont {
-		var labelFont = UIFont.systemFont(ofSize: 17.0)
+		var currentFont = UIFont.systemFont(ofSize: 17.0)
 
 		if let attributedText = self.attributedText, attributedText.length > 0 {
-			labelFont = attributedText.attribute(.font, at: 0, effectiveRange: nil) as! UIFont
+			currentFont = attributedText.attribute(.font, at: 0, effectiveRange: nil) as! UIFont
 		}
 
 		if let font = self.font {
-			labelFont = font
+			currentFont = font
 		}
 
-		return labelFont.withSize(floatedLabel.font.pointSize * 0.7)
+		return currentFont.withSize((currentFont.pointSize * 0.7).rounded())
 	}
 
 	/// Floated label height adjustemnt
@@ -240,7 +224,7 @@ private extension LineTextField {
 		underlineLayer.frame.size.height += 1
 	}
 
-	func disableBottomLine() {
+	func diactivateBottomLine() {
 		colorAnimation.fromValue = underlineLayer.backgroundColor
 		colorAnimation.toValue = lineColorDefault.cgColor
 		colorAnimation.duration = 0.1
