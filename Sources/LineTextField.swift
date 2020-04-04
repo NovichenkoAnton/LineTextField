@@ -54,7 +54,7 @@ public class LineTextField: UITextField {
 		}
 	}
 
-	/// Color for active state of floating label.
+	/// Color for active state of floating placeholder.
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
 
