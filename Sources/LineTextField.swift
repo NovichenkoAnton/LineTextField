@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc public protocol LineTextFieldDelegate: UITextFieldDelegate {
+	/// Detect tap on trailing view
+	/// - Parameter sender: `UIButton`
+	func didTapTrailing(_ sender: UIButton)
+}
+
 public class LineTextField: UITextField {
 
 	private lazy var floatedLabel: UILabel = UILabel(frame: .zero)
@@ -69,6 +75,8 @@ public class LineTextField: UITextField {
 	/// Default value is 0.
 	@IBInspectable public var trailingPadding: CGFloat = 0
 
+	@IBOutlet public weak var lineDelegate: LineTextFieldDelegate?
+
 	// MARK: - Inits
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -125,6 +133,7 @@ public class LineTextField: UITextField {
 
 		let originalImage = image.withRenderingMode(.alwaysOriginal)
 		trailingButton.setImage(originalImage, for: .normal)
+		trailingButton.addTarget(self, action: #selector(trailingButtonTap(_:)), for: .touchUpInside)
 
 		rightViewMode = .always
 		rightView = trailingButton
@@ -174,6 +183,10 @@ public class LineTextField: UITextField {
 
 	@objc func editingDidEnd() {
 		diactivateBottomLine()
+	}
+
+	@objc func trailingButtonTap(_ sender: UIButton) {
+		lineDelegate?.didTapTrailing(sender)
 	}
 }
 

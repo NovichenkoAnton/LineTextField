@@ -66,3 +66,10 @@ extension ViewController: UITextFieldDelegate {
 	}
 }
 
+// MARK: - LineTextFieldDelegate
+extension ViewController: LineTextFieldDelegate {
+	func didTapTrailing(_ sender: UIButton) {
+		print("tap")
+	}
+}
+
