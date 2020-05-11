@@ -58,6 +58,17 @@ public class LineTextField: UITextField {
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
 
+	/// Image on the right side of `LineTextField`.
+	@IBInspectable public var trailingImage: UIImage? {
+		didSet {
+			configureTrailingImage()
+		}
+	}
+
+	/// Right padding for trailing image.
+	/// Default value is 0.
+	@IBInspectable public var trailingPadding: CGFloat = 0
+
 	// MARK: - Inits
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -103,6 +114,22 @@ public class LineTextField: UITextField {
 		bringSubviewToFront(floatedLabel)
 	}
 
+	private func configureTrailingImage() {
+		rightView = nil
+		rightViewMode = .never
+
+		guard let image = trailingImage else { return }
+
+		let trailingButton = UIButton(type: .custom)
+		trailingButton.frame = CGRect(x: 0, y: 0, width: bounds.height * 0.8, height: bounds.height * 0.8)
+
+		let originalImage = image.withRenderingMode(.alwaysOriginal)
+		trailingButton.setImage(originalImage, for: .normal)
+
+		rightViewMode = .always
+		rightView = trailingButton
+	}
+
 	// MARK: - Overriden functions
 	public override func layoutSubviews() {
 		super.layoutSubviews()
@@ -115,6 +142,29 @@ public class LineTextField: UITextField {
 			updateFloatedLabelColor(editing: (hasText && isFirstResponder))
 			updateFloatedLabel(animated: hasText)
 		}
+	}
+
+	public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+		var rect = super.rightViewRect(forBounds: bounds)
+		rect.origin.x -= trailingPadding
+		return rect
+	}
+
+	public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+		var rect = super.editingRect(forBounds: bounds)
+		if trailingImage != nil {
+			rect.size.width -= (bounds.height * 0.8 - trailingPadding)
+		}
+
+		return rect
+	}
+
+	public override func textRect(forBounds bounds: CGRect) -> CGRect {
+		var rect = super.textRect(forBounds: bounds)
+		if trailingImage != nil {
+			rect.size.width -= (bounds.height * 0.8 - trailingPadding)
+		}
+		return rect
 	}
 
 	// MARK: - Events
