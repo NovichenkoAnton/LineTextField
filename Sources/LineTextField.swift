@@ -64,6 +64,10 @@ import UIKit
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
 
+	/// Padding between text rect and floating label
+	/// Default value is 0
+	@IBInspectable public var floatingPadding: CGFloat = 0
+
 	/// Image on the right side of `LineTextField`.
 	@IBInspectable public var trailingImage: UIImage? {
 		didSet {
@@ -224,7 +228,7 @@ private extension LineTextField {
 		let labelHeight = floatedLabelHeight()
 
 		if hasText {
-			return CGRect(x: 0, y: -9, width: bounds.size.width, height: labelHeight)
+			return CGRect(x: 0, y: -9 - floatingPadding, width: bounds.size.width, height: labelHeight)
 		}
 
 		return CGRect(x: 0, y: bounds.origin.y, width: bounds.size.width, height: labelHeight)

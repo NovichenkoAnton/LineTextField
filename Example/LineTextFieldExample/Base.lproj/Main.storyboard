@@ -35,12 +35,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="icf-lB-KlK"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Another placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8q-8A-K0n" customClass="LineTextField" customModule="LineTextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123123" placeholder="Идентификацонный номер" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8q-8A-K0n" customClass="LineTextField" customModule="LineTextField">
                                 <rect key="frame" x="20" y="181" width="374" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="8Rn-3I-Dbc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="floatingPlaceholder" value="YES"/>
@@ -59,6 +59,9 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="trailingImage" value="someImage"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
                                         <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingPadding">
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
