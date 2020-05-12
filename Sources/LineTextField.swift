@@ -8,10 +8,10 @@
 
 import UIKit
 
-@objc public protocol LineTextFieldDelegate: UITextFieldDelegate {
+@objc public protocol LineTextFieldDelegate {
 	/// Detect tap on trailing view
 	/// - Parameter sender: `UIButton`
-	func didTapTrailing(_ sender: UIButton)
+	func didTapTrailing(_ sender: UIButton, textField: LineTextField)
 }
 
 @IBDesignable public class LineTextField: UITextField {
@@ -81,7 +81,16 @@ import UIKit
 
 	@IBOutlet public weak var lineDelegate: LineTextFieldDelegate?
 
+	// MARK: - Overridden properties
+
+	public override var placeholder: String? {
+		didSet {
+			floatedLabel.text = placeholder
+		}
+	}
+
 	// MARK: - Inits
+
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 
@@ -190,7 +199,7 @@ import UIKit
 	}
 
 	@objc func trailingButtonTap(_ sender: UIButton) {
-		lineDelegate?.didTapTrailing(sender)
+		lineDelegate?.didTapTrailing(sender, textField: self)
 	}
 }
 
