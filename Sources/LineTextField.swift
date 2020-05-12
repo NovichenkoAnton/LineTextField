@@ -14,7 +14,7 @@ import UIKit
 	func didTapTrailing(_ sender: UIButton)
 }
 
-public class LineTextField: UITextField {
+@IBDesignable public class LineTextField: UITextField {
 
 	private lazy var floatedLabel: UILabel = UILabel(frame: .zero)
 

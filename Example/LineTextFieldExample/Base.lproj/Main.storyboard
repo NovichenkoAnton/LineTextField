@@ -35,7 +35,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="icf-lB-KlK"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Some text" placeholder="Another placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8q-8A-K0n" customClass="LineTextField" customModule="LineTextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Another placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8q-8A-K0n" customClass="LineTextField" customModule="LineTextField">
                                 <rect key="frame" x="20" y="181" width="374" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="8Rn-3I-Dbc"/>
