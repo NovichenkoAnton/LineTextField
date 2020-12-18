@@ -38,6 +38,19 @@ import UIKit
 	/// Color for active state of the bottom line.
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var lineColorActive: UIColor = UIColor.black
+    
+    /// Height for default state of the bottom line.
+    /// Default value is `1`.
+    @IBInspectable public var lineHeightDefault: CGFloat = 1 {
+        didSet {
+            underlineLayer.frame.size.height = lineHeightDefault
+            setNeedsDisplay()
+        }
+    }
+    
+    /// Height for active state of the bottom line.
+    /// Default value is `2`.
+    @IBInspectable public var lineHeightActive: CGFloat = 2
 
 	/// Set up floated placeholder for `UITextField`
 	/// Default value is `false`.
@@ -286,8 +299,8 @@ private extension LineTextField {
 		colorAnimation.toValue = lineColorActive.cgColor
 		colorAnimation.duration = 0.1
 
-		frameAnimation.fromValue = underlineLayer.frame.size.height
-		frameAnimation.toValue = underlineLayer.frame.size.height + 1
+		frameAnimation.fromValue = lineHeightDefault
+		frameAnimation.toValue = lineHeightActive
 		frameAnimation.duration = 0.1
 
 		groupAnimation.animations = [colorAnimation, frameAnimation]
@@ -297,7 +310,7 @@ private extension LineTextField {
 		underlineLayer.add(groupAnimation, forKey: "groupAnimation")
 
 		underlineLayer.backgroundColor = lineColorActive.cgColor
-		underlineLayer.frame.size.height += 1
+		underlineLayer.frame.size.height = lineHeightActive
 	}
 
 	func diactivateBottomLine() {
@@ -305,8 +318,8 @@ private extension LineTextField {
 		colorAnimation.toValue = lineColorDefault.cgColor
 		colorAnimation.duration = 0.1
 
-		frameAnimation.fromValue = underlineLayer.frame.size.height
-		frameAnimation.toValue = underlineLayer.frame.size.height - 1
+		frameAnimation.fromValue = lineHeightActive
+		frameAnimation.toValue = lineHeightDefault
 		frameAnimation.duration = 0.1
 
 		groupAnimation.animations = [colorAnimation, frameAnimation]
@@ -316,6 +329,6 @@ private extension LineTextField {
 		underlineLayer.add(groupAnimation, forKey: "groupAnimation")
 
 		underlineLayer.backgroundColor = lineColorDefault.cgColor
-		underlineLayer.frame.size.height -= 1
+		underlineLayer.frame.size.height = lineHeightDefault
 	}
 }
