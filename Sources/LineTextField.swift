@@ -88,11 +88,27 @@ import UIKit
 		}
 	}
 
+	@IBInspectable public var trailingTintColor: UIColor? {
+		didSet {
+			trailingButton.tintColor = trailingTintColor
+			setNeedsDisplay()
+		}
+	}
+
 	/// Right padding for trailing image.
 	/// Default value is 0.
 	@IBInspectable public var trailingPadding: CGFloat = 0
 
 	@IBOutlet public weak var lineDelegate: LineTextFieldDelegate?
+
+	// MARK: - Private properties
+
+	private lazy var trailingButton: UIButton = {
+		let trailingButton = UIButton(type: .system)
+		trailingButton.tintColor = trailingTintColor
+		trailingButton.addTarget(self, action: #selector(trailingButtonTap(_:)), for: .touchUpInside)
+		return trailingButton
+	}()
 
 	// MARK: - Overridden properties
 
@@ -154,12 +170,9 @@ import UIKit
 
 		guard let image = trailingImage else { return }
 
-		let trailingButton = UIButton(type: .custom)
-		trailingButton.frame = CGRect(x: 0, y: 0, width: bounds.height * 0.8, height: bounds.height * 0.8)
-
-		let originalImage = image.withRenderingMode(.alwaysOriginal)
+		let originalImage = image.withRenderingMode(.alwaysTemplate)
 		trailingButton.setImage(originalImage, for: .normal)
-		trailingButton.addTarget(self, action: #selector(trailingButtonTap(_:)), for: .touchUpInside)
+		trailingButton.tintColor = trailingTintColor
 
 		rightViewMode = .always
 		rightView = trailingButton
@@ -176,6 +189,10 @@ import UIKit
 
 			updateFloatedLabelColor(editing: (hasText && isFirstResponder))
 			updateFloatedLabel(animated: hasText)
+		}
+
+		if trailingImage != nil {
+			trailingButton.frame = CGRect(x: bounds.width - (bounds.height * 0.8 + trailingPadding), y: (bounds.height - bounds.height * 0.8)/2, width: bounds.height * 0.8, height: bounds.height * 0.8)
 		}
 	}
 
