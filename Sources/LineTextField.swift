@@ -24,6 +24,10 @@ import UIKit
 	private var frameAnimation = CABasicAnimation(keyPath: "frame.size.height")
 	private var groupAnimation = CAAnimationGroup()
 
+    /// Set animation when floating placeholder is redrawn.
+    /// Default value is `true`.
+    public var floatingPlaceholderShowWithAnimation: Bool = true
+    
 	// MARK: - IBInspectable
 
 	/// Color for default state of the bottom line.
@@ -77,10 +81,6 @@ import UIKit
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
     
-    /// Set animation when floating placeholder is redrawn.
-    /// Default value is `true`.
-    @IBInspectable public var floatingPlaceholderReloadWithAnimation: Bool = true
-
 	/// Padding between text rect and floating label
 	/// Default value is 0
 	@IBInspectable public var floatingPadding: CGFloat = 0
@@ -191,7 +191,7 @@ import UIKit
 		if floatingPlaceholder {
 			floatedLabel.frame = floatedLabelRect()
 
-            updateFloatedLabelColor(editing: (hasText && isFirstResponder), animated: floatingPlaceholderReloadWithAnimation)
+            updateFloatedLabelColor(editing: (hasText && isFirstResponder), animated: floatingPlaceholderShowWithAnimation)
 			updateFloatedLabel(animated: hasText)
 		}
 
