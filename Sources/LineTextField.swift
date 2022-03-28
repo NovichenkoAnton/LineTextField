@@ -24,6 +24,10 @@ import UIKit
 	private var frameAnimation = CABasicAnimation(keyPath: "frame.size.height")
 	private var groupAnimation = CAAnimationGroup()
 
+    /// Set animation when floating placeholder is redrawn.
+    /// Default value is `true`.
+    public var floatingPlaceholderShowWithAnimation: Bool = true
+    
 	// MARK: - IBInspectable
 
 	/// Color for default state of the bottom line.
@@ -76,7 +80,7 @@ import UIKit
 	/// Color for active state of floating placeholder.
 	/// Default value is `UIColor.black`.
 	@IBInspectable public var floatingPlaceholderActiveColor: UIColor = UIColor.black
-
+    
 	/// Padding between text rect and floating label
 	/// Default value is 0
 	@IBInspectable public var floatingPadding: CGFloat = 0
@@ -187,7 +191,7 @@ import UIKit
 		if floatingPlaceholder {
 			floatedLabel.frame = floatedLabelRect()
 
-			updateFloatedLabelColor(editing: (hasText && isFirstResponder))
+            updateFloatedLabelColor(editing: (hasText && isFirstResponder), animated: floatingPlaceholderShowWithAnimation)
 			updateFloatedLabel(animated: hasText)
 		}
 
@@ -292,7 +296,7 @@ private extension LineTextField {
 
 	/// Update text color of floated label
 	/// - Parameter editing: `true` if `UITextField` is editing now
-	func updateFloatedLabelColor(editing: Bool, animated: Bool = true) {
+	func updateFloatedLabelColor(editing: Bool, animated: Bool) {
 		let animationBlock = { () -> Void in
 			if editing && self.hasText {
 				self.floatedLabel.textColor = self.floatingPlaceholderActiveColor
