@@ -22,6 +22,7 @@ final class ViewController: UIViewController {
         lineTextField.floatingPlaceholder = true
         lineTextField.floatingPlaceholderColor = .blue
         lineTextField.floatingPlaceholderActiveColor = .black
+        lineTextField.floatingPlaceholderShowWithAnimation = false
         lineTextField.trailingImage = UIImage(named: "someImage")
         return lineTextField
     }()
