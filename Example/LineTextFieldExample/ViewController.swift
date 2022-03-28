@@ -16,17 +16,21 @@ final class ViewController: UIViewController {
 	@IBOutlet var textField: LineTextField!
 	@IBOutlet var textFieldHeight: NSLayoutConstraint!
 
-	private var lineTextField: LineTextField!
+    private let lineTextField: LineTextField = {
+        let lineTextField = LineTextField()
+        lineTextField.placeholder = "Manual placeholder"
+        lineTextField.floatingPlaceholder = true
+        lineTextField.floatingPlaceholderColor = .blue
+        lineTextField.floatingPlaceholderActiveColor = .black
+        lineTextField.trailingImage = UIImage(named: "someImage")
+        return lineTextField
+    }()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-//		lineTextField = LineTextField(frame: CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 35))
-//		lineTextField.placeholder = "Manual placeholder"
-//		lineTextField.floatingPlaceholder = true
-//		lineTextField.floatingPlaceholderColor = .blue
-//		lineTextField.floatingPlaceholderActiveColor = .black
-//		view.addSubview(lineTextField)
+        lineTextField.frame = CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 35)
+		view.addSubview(lineTextField)
 	}
 
 	// MARK: - Events
