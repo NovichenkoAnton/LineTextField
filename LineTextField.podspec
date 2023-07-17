@@ -8,9 +8,9 @@ Pod::Spec.new do |spec|
   spec.author         = { "Anton Novichenko" => "novichenko.anton@gmail.com" }
 
   spec.platform       = :ios
-  spec.ios.deployment_target = '9.0'
+  spec.ios.deployment_target = '13.0'
 
-  spec.swift_version  = ['5.0', '5.1']
+  spec.swift_version  = ['5.4']
   spec.source         = { :git => 'https://github.com/NovichenkoAnton/LineTextField.git', :tag => "#{spec.version}" }
   spec.source_files   = 'Sources/*.swift'
   spec.requires_arc  = true
