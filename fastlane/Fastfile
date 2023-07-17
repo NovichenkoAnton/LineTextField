@@ -21,7 +21,8 @@ target = 'LineTextField'
 lane :release do
 	pod_lib_lint(
 		podspec: podspec,
-		allow_warnings: true
+		allow_warnings: true,
+		verbose: true
 	)
 
 	build_version = get_version_number(
