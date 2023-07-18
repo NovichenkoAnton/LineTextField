@@ -22,6 +22,7 @@ import UIKit
 
 	private var colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
 	private var frameAnimation = CABasicAnimation(keyPath: "frame.size.height")
+    private var cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
 	private var groupAnimation = CAAnimationGroup()
 
     /// Set animation when floating placeholder is redrawn.
@@ -48,6 +49,7 @@ import UIKit
     @IBInspectable public var lineHeightDefault: CGFloat = 1 {
         didSet {
             underlineLayer.frame.size.height = lineHeightDefault
+            underlineLayer.cornerRadius = max(lineHeightDefault / 2, 1)
             setNeedsDisplay()
         }
     }
@@ -323,15 +325,20 @@ private extension LineTextField {
 		frameAnimation.fromValue = lineHeightDefault
 		frameAnimation.toValue = lineHeightActive
 		frameAnimation.duration = 0.1
+        
+        cornerRadiusAnimation.fromValue = underlineLayer.cornerRadius
+        cornerRadiusAnimation.toValue = lineHeightActive / 2
+        cornerRadiusAnimation.duration = 0.1
 
-		groupAnimation.animations = [colorAnimation, frameAnimation]
-		groupAnimation.duration = 0.2
+		groupAnimation.animations = [colorAnimation, frameAnimation, cornerRadiusAnimation]
+		groupAnimation.duration = 0.3
 		groupAnimation.isRemovedOnCompletion = true
 
 		underlineLayer.add(groupAnimation, forKey: "groupAnimation")
 
 		underlineLayer.backgroundColor = lineColorActive.cgColor
 		underlineLayer.frame.size.height = lineHeightActive
+        underlineLayer.cornerRadius = lineHeightActive / 2
 	}
 
 	func diactivateBottomLine() {
@@ -342,14 +349,19 @@ private extension LineTextField {
 		frameAnimation.fromValue = lineHeightActive
 		frameAnimation.toValue = lineHeightDefault
 		frameAnimation.duration = 0.1
+        
+        cornerRadiusAnimation.fromValue = underlineLayer.cornerRadius
+        cornerRadiusAnimation.toValue = max(lineHeightDefault / 2, 1)
+        cornerRadiusAnimation.duration = 0.1
 
-		groupAnimation.animations = [colorAnimation, frameAnimation]
-		groupAnimation.duration = 0.2
+		groupAnimation.animations = [colorAnimation, frameAnimation, cornerRadiusAnimation]
+		groupAnimation.duration = 0.3
 		groupAnimation.isRemovedOnCompletion = true
 
 		underlineLayer.add(groupAnimation, forKey: "groupAnimation")
 
 		underlineLayer.backgroundColor = lineColorDefault.cgColor
 		underlineLayer.frame.size.height = lineHeightDefault
+        underlineLayer.cornerRadius = max(lineHeightDefault / 2, 1)
 	}
 }

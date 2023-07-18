@@ -13,7 +13,7 @@ final class ViewController: UIViewController {
 
 	// MARK: - Outlets
 
-	@IBOutlet var textField: LineTextField!
+    @IBOutlet var textField: LineTextField!
 	@IBOutlet var textFieldHeight: NSLayoutConstraint!
 
     private let lineTextField: LineTextField = {
@@ -23,6 +23,8 @@ final class ViewController: UIViewController {
         lineTextField.floatingPlaceholderColor = .blue
         lineTextField.floatingPlaceholderActiveColor = .black
         lineTextField.floatingPlaceholderShowWithAnimation = false
+        lineTextField.lineHeightDefault = 6
+        lineTextField.lineHeightActive = 8
         lineTextField.trailingImage = UIImage(named: "someImage")
         return lineTextField
     }()
