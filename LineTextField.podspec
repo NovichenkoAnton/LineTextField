@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name           = 'LineTextField'
-  spec.version        = '1.1.5'
+  spec.version        = '1.1.6'
   spec.summary        = 'Custom UITextField with floated placeholder and an underline.'
   spec.homepage       = "https://github.com/NovichenkoAnton/LineTextField"
 
