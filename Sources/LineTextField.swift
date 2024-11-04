@@ -100,6 +100,16 @@ import UIKit
 			setNeedsDisplay()
 		}
 	}
+    
+    public var trailingImageRenderingMode: UIImage.RenderingMode = .alwaysTemplate {
+        didSet {
+            guard let trailingImage else { return }
+            
+            let originalImage = trailingImage.withRenderingMode(trailingImageRenderingMode)
+            trailingButton.setImage(originalImage, for: .normal)
+            setNeedsDisplay()
+        }
+    }
 
 	/// Right padding for trailing image.
 	/// Default value is 0.
@@ -181,17 +191,17 @@ import UIKit
 	}
 
 	private func configureTrailingImage() {
-		rightView = nil
-		rightViewMode = .never
-
-		guard let image = trailingImage else { return }
-
-		let originalImage = image.withRenderingMode(.alwaysTemplate)
-		trailingButton.setImage(originalImage, for: .normal)
-		trailingButton.tintColor = trailingTintColor
-
-		rightViewMode = .always
-		rightView = trailingButton
+        rightView = nil
+        rightViewMode = .never
+        
+        guard let image = trailingImage else { return }
+        
+        let originalImage = image.withRenderingMode(trailingImageRenderingMode)
+        trailingButton.setImage(originalImage, for: .normal)
+        trailingButton.tintColor = trailingTintColor
+        
+        rightViewMode = .always
+        rightView = trailingButton
 	}
 
 	// MARK: - Overriden functions

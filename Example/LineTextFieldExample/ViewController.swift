@@ -26,6 +26,7 @@ final class ViewController: UIViewController {
         lineTextField.lineHeightDefault = 6
         lineTextField.lineHeightActive = 8
         lineTextField.trailingImage = UIImage(named: "someImage")
+        lineTextField.trailingImageRenderingMode = .alwaysOriginal
         return lineTextField
     }()
 
